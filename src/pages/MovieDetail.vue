@@ -1,9 +1,9 @@
 <template>
   <div class="space-y-8">
-    <!-- info detail -->
-     <MovieDetailSkeleton v-if="isLoading || isInfoLoading" />
-      <!-- <div v-if="isLoading || isInfoLoading">Loading...</div> -->
+    <!-- SKELETON -->
+    <MovieDetailSkeleton v-if="isLoading || isInfoLoading" />
     <div v-else>
+      <!-- info detail -->
       <div class="flex flex-col py-4 px-2 space-y-4" v-if="data">
         <h1 class="text-2xl font-bold">{{ data.Title }}</h1>
         <div class="grid w-full md:flex md:space-x-6">

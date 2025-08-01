@@ -1,7 +1,9 @@
 <template>
   <div class="p-4">
+    <!-- SKELETON -->
+    <HomeSkeleton v-if="isLoading" />
 
-    <div v-if="isLoading">Loading...</div>
+    <!-- LIST MOVIE -->
     <div v-else-if="data?.Search">
       <div class="grid md:grid-cols-3 gap-4 w-full">
         <div v-for="movie in data.Search" :key="movie.imdbID" @click="goToDetail(movie.imdbID)" class="cursor-pointer">
@@ -20,7 +22,7 @@
 
     <!-- pagination  -->
     <div className="flex flex-wrap justify-center items-center mt-6 gap-2 text-white w-full px-2" v-if="totalPage > 1">
-      <button @click="store.setPage(store.currentPage - 1)" :disabled="store.currentPage === 1" class="px-3P py-1">Sebelumnya</button>
+      <button @click="store.setPage(store.currentPage - 1)" :disabled="store.currentPage === 1" class="px-3 py-1">Sebelumnya</button>
 
       <button v-for="page in pages" :key="page" :disabled="page === '...'"
         @click="typeof page === 'number' && goToPage(page)" class="px-3 py-1 rounded-full"
@@ -39,6 +41,7 @@ import { useRouter } from 'vue-router'
 import { useFetchMovies } from '../services/useMovie'
 import { useMovieStore } from '../stores/movieStore'
 import { getPageList } from '../utils/pagination'
+import HomeSkeleton from '../components/HomeSkeleton.vue'
 
 
 const router = useRouter()
